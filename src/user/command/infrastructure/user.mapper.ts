@@ -1,8 +1,8 @@
 import { Identifier } from 'src/shared/domain/value-object/identifier';
 import { User } from '../domain/user';
+import { UserEntity } from 'src/user/infrastructure/orm-entity/user.entity';
 
 export class UserMapper {
-  /*
   static toDomain(entity: UserEntity): User {
     return User.create({
       id: Identifier.from(entity.id),
@@ -23,5 +23,4 @@ export class UserMapper {
 
     return entity;
   }
-  */
 }

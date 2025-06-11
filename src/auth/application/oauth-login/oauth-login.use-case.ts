@@ -8,7 +8,7 @@ import { OAuthProviderType } from 'src/auth/domain/value-object/oauth-provider.e
 import { AuthEntity } from 'src/auth/infrastructure/orm-entity/auth.entity';
 import { JwtProvider } from 'src/auth/infrastructure/provider/jwt.provider';
 import { Identifier } from 'src/shared/domain/value-object/identifier';
-import { CreateUserUseCase } from 'src/user/application/create-user/create-user.use-case';
+import { CreateUserUseCase } from 'src/user/command/application/create/create.usecase';
 import { Role } from 'src/user/domain/value-object/role.enum';
 import { OAuthLoginRequestDto } from './dto/oauth-login.request.dto';
 import { OAuthLoginResponseDto } from './dto/oauth-login.response.dto';

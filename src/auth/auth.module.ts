@@ -17,12 +17,18 @@ import { PassportModule } from '@nestjs/passport';
 import { RenewTokenUseCase } from './application/renew-token/renew-token.use-case';
 import { LogoutUseCase } from './application/logout/logout.use-case';
 import { UserModule } from 'src/user/user.module';
+import { UserCommandModule } from 'src/user/command/user.command.module';
 
 const useCases = [OAuthLoginUseCase, AuthorizeOAuthUseCase, RenewTokenUseCase, LogoutUseCase];
 
 @Module({
   controllers: [AuthController],
-  imports: [JwtModule.register({}), MikroOrmModule.forFeature([AuthEntity, UserEntity]), PassportModule, UserModule],
+  imports: [
+    JwtModule.register({}),
+    MikroOrmModule.forFeature([AuthEntity, UserEntity]),
+    PassportModule,
+    UserCommandModule,
+  ],
   providers: [
     ...useCases,
     {
