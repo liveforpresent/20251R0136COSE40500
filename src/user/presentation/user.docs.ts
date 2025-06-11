@@ -1,7 +1,7 @@
 import { applyDecorators } from '@nestjs/common';
 import { ApiNotFoundResponse, ApiOkResponse, ApiOperation, ApiUnauthorizedResponse } from '@nestjs/swagger';
 import { createDocs } from 'src/shared/presentation/docs/base.docs';
-import { GetMyInfoResponseDto } from '../application/get-my-info/dto/get-my-info.response.dto';
+import { UserInfoProjection } from '../query/domain/projection/get-my-info.projection';
 
 export type UserEndpoint = 'getMyInfo' | 'deleteMyInfo';
 
@@ -14,7 +14,7 @@ export const UserDocs = createDocs<UserEndpoint>({
       }),
       ApiOkResponse({
         description: '사용자 이메일 정보 반환',
-        type: GetMyInfoResponseDto,
+        type: UserInfoProjection,
       }),
       ApiUnauthorizedResponse({
         description: '유효하지 않은 access token',
