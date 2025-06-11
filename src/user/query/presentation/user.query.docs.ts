@@ -1,11 +1,11 @@
 import { applyDecorators } from '@nestjs/common';
 import { ApiNotFoundResponse, ApiOkResponse, ApiOperation, ApiUnauthorizedResponse } from '@nestjs/swagger';
 import { createDocs } from 'src/shared/presentation/docs/base.docs';
-import { UserInfoProjection } from '../query/domain/projection/get-my-info.projection';
+import { UserInfoProjection } from '../domain/projection/get-my-info.projection';
 
-export type UserEndpoint = 'getMyInfo' | 'deleteMyInfo';
+export type UserQueryEndpoint = 'getMyInfo';
 
-export const UserDocs = createDocs<UserEndpoint>({
+export const UserQueryDocs = createDocs<UserQueryEndpoint>({
   getMyInfo: () =>
     applyDecorators(
       ApiOperation({
@@ -15,22 +15,6 @@ export const UserDocs = createDocs<UserEndpoint>({
       ApiOkResponse({
         description: '사용자 이메일 정보 반환',
         type: UserInfoProjection,
-      }),
-      ApiUnauthorizedResponse({
-        description: '유효하지 않은 access token',
-      }),
-      ApiNotFoundResponse({
-        description: '존재하지 않는 사용자',
-      }),
-    ),
-  deleteMyInfo: () =>
-    applyDecorators(
-      ApiOperation({
-        summary: '회원탈퇴',
-        description: '회원탈퇴',
-      }),
-      ApiOkResponse({
-        description: '회원탈퇴 성공',
       }),
       ApiUnauthorizedResponse({
         description: '유효하지 않은 access token',
