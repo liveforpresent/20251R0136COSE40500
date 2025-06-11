@@ -12,11 +12,9 @@ import { MediaModule } from './media/media.module';
 import { ScrapModule } from './scrap/scrap.module';
 import mikroOrmConfig from './shared/config/mikro-orm.config';
 import config from 'src/shared/config/configuration';
-import { CqrsModule } from '@nestjs/cqrs';
 
 @Module({
   imports: [
-    CqrsModule.forRoot(),
     MikroOrmModule.forRoot(mikroOrmConfig),
     ConfigModule.forRoot({
       isGlobal: true,
