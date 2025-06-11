@@ -8,11 +8,13 @@ import { ScrapEntity } from '../scrap/infrastructure/orm-entity/scrap.entity';
 import { UserController } from './presentation/user.controller';
 import { GetMyInfoUseCase } from './application/get-my-info/get-my-info.use-case';
 import { DeleteMyInfoUseCase } from './application/delete-my-info/delete-my-info.use-case';
+import { UserQueryModule } from './query/user.query.module';
+import { UserCommandModule } from './command/user.command.module';
 
 const useCases = [CreateUserUseCase, GetMyInfoUseCase, DeleteMyInfoUseCase];
 
 @Module({
-  imports: [MikroOrmModule.forFeature([UserEntity, ScrapEntity])],
+  imports: [UserCommandModule, UserQueryModule, MikroOrmModule.forFeature([UserEntity, ScrapEntity])],
   providers: [
     ...useCases,
     {
