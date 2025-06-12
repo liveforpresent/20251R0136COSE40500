@@ -12,9 +12,15 @@ import { ArticleCreate } from './application/post/article.create';
 import { DeleteArticle } from './application/delete/delete.article';
 import { MediaModule } from 'src/media/media.module';
 import { ArticleCommandModule } from './command/article.command.module';
+import { ArticleQueryModule } from './query/article.query.module';
 
 @Module({
-  imports: [MikroOrmModule.forFeature([ArticleEntity, MediaEntity, TagEntity]), MediaModule, ArticleCommandModule],
+  imports: [
+    MikroOrmModule.forFeature([ArticleEntity, MediaEntity, TagEntity]),
+    MediaModule,
+    ArticleCommandModule,
+    ArticleQueryModule,
+  ],
   controllers: [ArticleController],
   providers: [
     {
