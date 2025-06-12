@@ -4,7 +4,9 @@ import { AuthGuard } from '@nestjs/passport';
 import { User, UserPayload } from 'src/shared/presentation/decorator/user.decorator';
 import { UserInfoProjection } from '../domain/projection/get-my-info.projection';
 import { UserQueryDocs } from './user.query.docs';
+import { ApiTags } from '@nestjs/swagger';
 
+@ApiTags('user')
 @Controller('user')
 export class UserQueryController {
   constructor(private readonly getMyInfoUseCase: GetMyInfoUseCase) {}
