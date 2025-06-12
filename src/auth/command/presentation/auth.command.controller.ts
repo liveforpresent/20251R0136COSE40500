@@ -8,7 +8,9 @@ import { accessTokenCookieOptions, refreshTokenCookieOptions } from 'src/shared/
 import { User, UserPayload } from 'src/shared/presentation/decorator/user.decorator';
 import { AuthGuard } from '@nestjs/passport';
 import { AuthCommandDocs } from './auth.command.docs';
+import { ApiTags } from '@nestjs/swagger';
 
+@ApiTags('auth')
 @Controller('auth')
 export class AuthCommandController {
   constructor(

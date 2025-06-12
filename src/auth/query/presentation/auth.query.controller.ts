@@ -3,7 +3,9 @@ import { AuthorizeOAuthUseCase } from '../application/authorize-oauth/authorize-
 import { OAuthProviderType } from 'src/auth/command/domain/value-object/oauth-provider.enum';
 import { Response } from 'express';
 import { AuthQueryDocs } from './auth.query.docs';
+import { ApiTags } from '@nestjs/swagger';
 
+@ApiTags('auth')
 @Controller('auth')
 export class AuthQueryController {
   constructor(private readonly authorizeOAuthUseCase: AuthorizeOAuthUseCase) {}
