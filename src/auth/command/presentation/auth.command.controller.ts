@@ -7,6 +7,7 @@ import { Response } from 'express';
 import { accessTokenCookieOptions, refreshTokenCookieOptions } from 'src/shared/config/cookie.config';
 import { User, UserPayload } from 'src/shared/presentation/decorator/user.decorator';
 import { AuthGuard } from '@nestjs/passport';
+import { AuthCommandDocs } from './auth.command.docs';
 
 @Controller('auth')
 export class AuthCommandController {
@@ -17,6 +18,7 @@ export class AuthCommandController {
   ) {}
 
   @Get('login/oauth/callback')
+  @AuthCommandDocs('oauthCallback')
   async oAuthLogin(@Query('code') code: string, @Res() res: Response) {
     const { accessToken, refreshToken } = await this.oAuthLoginUseCase.execute({
       oAuthProviderType: OAuthProviderType.KAKAO,
@@ -31,6 +33,7 @@ export class AuthCommandController {
 
   @Get('refresh')
   @UseGuards(AuthGuard('jwt-refresh'))
+  @AuthCommandDocs('renewToken')
   async renewToken(@User() user: UserPayload, @Res() res: Response) {
     const { accessToken, refreshToken } = await this.renewTokenUseCase.execute({ userId: user.userId, jti: user.jti });
 
@@ -42,6 +45,7 @@ export class AuthCommandController {
 
   @Post('logout')
   @UseGuards(AuthGuard('jwt-access'))
+  @AuthCommandDocs('logout')
   async logout(@User() user: UserPayload, @Res() res: Response) {
     await this.logoutUseCase.execute({ userId: user.userId });
 
