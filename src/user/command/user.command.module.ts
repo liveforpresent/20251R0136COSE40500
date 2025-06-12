@@ -4,7 +4,7 @@ import { USER_COMMAND_REPOSITORY } from './domain/user.command.repository';
 import { UserCommandRepositoryImpl } from './infrastructure/user.command.repository.impl';
 import { CreateUserUseCase } from './application/create/create.usecase';
 import { MikroOrmModule } from '@mikro-orm/nestjs';
-import { UserEntity } from '../infrastructure/orm-entity/user.entity';
+import { UserEntity } from './infrastructure/user.entity';
 
 const usecases = [CreateUserUseCase];
 

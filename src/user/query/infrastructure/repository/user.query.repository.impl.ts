@@ -1,8 +1,8 @@
 import { InjectRepository } from '@mikro-orm/nestjs';
 import { UserInfoProjection } from '../../domain/projection/get-my-info.projection';
 import { UserQueryRepository } from '../../domain/repository/user.query.repository';
-import { UserEntity } from 'src/user/infrastructure/orm-entity/user.entity';
 import { EntityManager, EntityRepository } from '@mikro-orm/mysql';
+import { UserEntity } from 'src/user/command/infrastructure/user.entity';
 
 export class UserQueryRepositoryImpl implements UserQueryRepository {
   constructor(

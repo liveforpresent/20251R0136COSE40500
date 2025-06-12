@@ -1,9 +1,9 @@
 import { InjectRepository } from '@mikro-orm/nestjs';
 import { UserCommandRepository } from '../domain/user.command.repository';
-import { UserEntity } from 'src/user/infrastructure/orm-entity/user.entity';
 import { EntityManager, EntityRepository } from '@mikro-orm/mysql';
 import { User } from '../domain/user';
 import { UserMapper } from './user.mapper';
+import { UserEntity } from './user.entity';
 
 export class UserCommandRepositoryImpl implements UserCommandRepository {
   constructor(

@@ -4,7 +4,7 @@ import { GetMyInfoUseCase } from './application/get-my-info/get-my-info.usecase'
 import { USER_QUERY_REPOSITORY } from './domain/repository/user.query.repository';
 import { UserQueryRepositoryImpl } from './infrastructure/repository/user.query.repository.impl';
 import { MikroOrmModule } from '@mikro-orm/nestjs';
-import { UserEntity } from '../infrastructure/orm-entity/user.entity';
+import { UserEntity } from '../command/infrastructure/user.entity';
 
 const usecases = [GetMyInfoUseCase];
 
