@@ -1,6 +1,6 @@
-import { Media } from 'src/media/domain/entity/media';
-import { MediaEntity } from '../orm-entity/media.entity';
 import { Identifier } from 'src/shared/domain/value-object/identifier';
+import { Media } from '../domain/media';
+import { MediaEntity } from './media.entity';
 import { EntityManager } from '@mikro-orm/mysql';
 import { ArticleEntity } from 'src/article/command/infrastructure/article.entity';
 

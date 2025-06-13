@@ -1,9 +1,8 @@
 import { Entity, ManyToOne, Property } from '@mikro-orm/core';
-import { BaseEntity } from 'src/shared/infrastructure/orm-entity/base.entity';
-import { MediaRepositoryImpl } from '../repository/media.repository.impl';
 import { ArticleEntity } from 'src/article/command/infrastructure/article.entity';
+import { BaseEntity } from 'src/shared/infrastructure/orm-entity/base.entity';
 
-@Entity({ tableName: 'media', repository: () => MediaRepositoryImpl })
+@Entity({ tableName: 'media' })
 export class MediaEntity extends BaseEntity {
   @Property({ type: 'varchar' })
   mediaPath: string;
