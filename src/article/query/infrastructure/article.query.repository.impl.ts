@@ -3,6 +3,7 @@ import { GetArticleDetailProjection } from '../domain/projection/get-article-det
 import { ArticleQueryRepository } from '../domain/repository/article.query.repository';
 import { ArticleEntity } from 'src/article/command/infrastructure/article.entity';
 import { EntityRepository } from '@mikro-orm/mysql';
+import { GetArticleListProjection } from '../domain/projection/get-article-list.projection';
 
 export class ArticleQueryRepositoryImpl implements ArticleQueryRepository {
   constructor(
@@ -42,5 +43,22 @@ export class ArticleQueryRepositoryImpl implements ArticleQueryRepository {
       viewCount: articleEntity.viewCount,
       registrationUrl: articleEntity.registrationUrl,
     };
+  }
+
+  async findAllByCriteria(): Promise<GetArticleListProjection[]> {
+    const articleEntities = await this.ormRepository
+      .createQueryBuilder('a')
+      .select(['id', 'title', 'organization', 'scrapCount', 'viewCount'])
+      .getResultList();
+
+    const result = articleEntities.map((articleEntity) => ({
+      id: articleEntity.id,
+      title: articleEntity.title,
+      organization: articleEntity.organization,
+      scrapCount: articleEntity.scrapCount,
+      viewCount: articleEntity.viewCount,
+    }));
+
+    return result;
   }
 }
