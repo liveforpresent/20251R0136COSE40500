@@ -1,8 +1,8 @@
 import { Media } from 'src/media/domain/entity/media';
 import { MediaEntity } from '../orm-entity/media.entity';
-import { ArticleEntity } from 'src/article/infrastructure/orm-entity/article.entity';
 import { Identifier } from 'src/shared/domain/value-object/identifier';
 import { EntityManager } from '@mikro-orm/mysql';
+import { ArticleEntity } from 'src/article/command/infrastructure/article.entity';
 
 export class MediaMapper {
   static toDomain(entity: MediaEntity): Media {
