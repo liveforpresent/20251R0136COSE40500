@@ -1,8 +1,8 @@
 import { Scrap } from 'src/scrap/domain/entity/scrap';
 import { ScrapEntity } from '../orm-entity/scrap.entity';
-import { ArticleEntity } from 'src/article/infrastructure/orm-entity/article.entity';
 import { Identifier } from 'src/shared/domain/value-object/identifier';
 import { UserEntity } from 'src/user/command/infrastructure/user.entity';
+import { ArticleEntity } from 'src/article/command/infrastructure/article.entity';
 
 export class ScrapMapper {
   static toDomain(entity: ScrapEntity): Scrap {
