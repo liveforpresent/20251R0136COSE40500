@@ -13,22 +13,27 @@ export class ArticleQueryRepositoryImpl implements ArticleQueryRepository {
   ) {}
 
   async findById(id: string): Promise<GetArticleDetailProjection | null> {
-    const articleEntity = await this.ormRepository
-      .createQueryBuilder('a')
-      .select([
-        'id',
-        'title',
-        'organization',
-        'description',
-        'location',
-        'startAt',
-        'endAt',
-        'scrapCount',
-        'viewCount',
-        'registrationUrl',
-      ])
-      .where({ id: id })
-      .getSingleResult();
+    const articleEntity = (
+      await this.ormRepository
+        .createQueryBuilder('a')
+        .select([
+          'a.id',
+          'a.title',
+          'a.organization',
+          'a.description',
+          'a.location',
+          'a.startAt',
+          'a.endAt',
+          'a.scrapCount',
+          'a.viewCount',
+          'a.registrationUrl',
+          't.media_path as thumbnailPath',
+        ])
+        .leftJoin('a.media', 'm')
+        .leftJoin('a.thumbnail', 't')
+        .where({ id: id })
+        .execute<GetArticleDetailProjection[]>()
+    )[0];
 
     if (!articleEntity) return null;
 
@@ -38,11 +43,12 @@ export class ArticleQueryRepositoryImpl implements ArticleQueryRepository {
       organization: articleEntity.organization,
       description: articleEntity.description,
       location: articleEntity.location,
-      startAt: articleEntity.startAt.toISOString(),
-      endAt: articleEntity.endAt.toISOString(),
+      startAt: articleEntity.startAt,
+      endAt: articleEntity.endAt,
       scrapCount: articleEntity.scrapCount,
       viewCount: articleEntity.viewCount,
       registrationUrl: articleEntity.registrationUrl,
+      thumbnailPath: articleEntity.thumbnailPath,
     };
   }
 
