@@ -7,7 +7,7 @@ export class GetArticleDetailProjection {
   startAt: string;
   endAt: string;
   thumbnailPath: string;
-  // imagePaths: string[];
+  imagePaths: string[];
   scrapCount: number;
   viewCount: number;
   registrationUrl: string;

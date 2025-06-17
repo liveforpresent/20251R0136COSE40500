@@ -29,11 +29,19 @@ export class ArticleQueryRepositoryImpl implements ArticleQueryRepository {
           'a.registrationUrl',
           't.media_path as thumbnailPath',
         ])
-        .leftJoin('a.media', 'm')
         .leftJoin('a.thumbnail', 't')
         .where({ id: id })
         .execute<GetArticleDetailProjection[]>()
     )[0];
+
+    const mediaEntities = await this.ormRepository
+      .createQueryBuilder('a')
+      .select(['m.media_path as mediaPath'])
+      .leftJoin('a.media', 'm')
+      .where({ id: id })
+      .execute<{ mediaPath: string }[]>();
+
+    const imagePaths = mediaEntities.map((m) => m.mediaPath);
 
     if (!articleEntity) return null;
 
@@ -49,6 +57,7 @@ export class ArticleQueryRepositoryImpl implements ArticleQueryRepository {
       viewCount: articleEntity.viewCount,
       registrationUrl: articleEntity.registrationUrl,
       thumbnailPath: articleEntity.thumbnailPath,
+      imagePaths: imagePaths,
     };
   }
 
