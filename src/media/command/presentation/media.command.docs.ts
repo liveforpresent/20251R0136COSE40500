@@ -11,9 +11,9 @@ import {
 import { createDocs } from 'src/shared/presentation/docs/base.docs';
 import { GeneratePresignedUrlResponseDto } from '../application/generate-presigned-url/dto/generate-presigned-url.response.dto';
 
-export type MediaEndpoint = 'presignedUrl';
+export type MediaCommandEndpoint = 'presignedUrl';
 
-export const MediaDocs = createDocs<MediaEndpoint>({
+export const MediaCommandDocs = createDocs<MediaCommandEndpoint>({
   presignedUrl: () =>
     applyDecorators(
       ApiOperation({

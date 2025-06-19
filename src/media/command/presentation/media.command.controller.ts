@@ -1,20 +1,20 @@
 import { Body, Controller, Post } from '@nestjs/common';
+import { ApiTags } from '@nestjs/swagger';
 import { GeneratePresignedUrlUseCase } from '../application/generate-presigned-url/generate-presigned-url.use-case';
 import { GeneratePresignedUrlRequestDto } from '../application/generate-presigned-url/dto/generate-presigned-url.request.dto';
-import { ApiTags } from '@nestjs/swagger';
 import { GeneratePresignedUrlResponseDto } from '../application/generate-presigned-url/dto/generate-presigned-url.response.dto';
-import { MediaDocs } from './media.docs';
+import { MediaCommandDocs } from './media.command.docs';
 
 @ApiTags('media')
 @Controller('media')
-export class MediaController {
+export class MediaCommandController {
   constructor(private readonly generatePresignedUrlUsecCase: GeneratePresignedUrlUseCase) {}
 
   @Post('presigned-url')
-  @MediaDocs('presignedUrl')
+  @MediaCommandDocs('presignedUrl')
   async generatePresignedUrl(
-    @Body() generatePresignedUrlRequestDto: GeneratePresignedUrlRequestDto,
+    @Body() reqDto: GeneratePresignedUrlRequestDto,
   ): Promise<GeneratePresignedUrlResponseDto[]> {
-    return await this.generatePresignedUrlUsecCase.execute(generatePresignedUrlRequestDto);
+    return await this.generatePresignedUrlUsecCase.execute(reqDto);
   }
 }

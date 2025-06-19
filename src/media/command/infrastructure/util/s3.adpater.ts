@@ -56,23 +56,4 @@ export class S3Adapter {
 
     return await getSignedUrl(this.s3Client, command, { expiresIn: 3600 });
   }
-
-  /*
-  async upload(file: Express.Multer.File, articleId: string): Promise<string> {
-    const { originalname, buffer } = file;
-
-    const key = this.generateKey(originalname, articleId);
-
-    const params = {
-      Bucket: this.bucketName,
-      Key: key,
-      Body: buffer,
-      ContentType: file.mimetype,
-    };
-
-    await this.s3Client.send(new PutObjectCommand(params));
-
-    return `${this.bucketDomain}/${key}`;
-  }
-  */
 }
