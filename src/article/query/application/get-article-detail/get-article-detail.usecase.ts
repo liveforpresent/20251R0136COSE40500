@@ -1,5 +1,5 @@
 import { Inject, Injectable, NotFoundException } from '@nestjs/common';
-import { GetArticleDetailProjection } from '../../domain/projection/get-article-detail.projection';
+import { GetArticleDetailProjection } from './get-article-detail.projection';
 import { GetArticleDetailRequestDto } from './dto/get-article-detail.request.dto';
 import { ARTICLE_QUERY_REPOSITORY, ArticleQueryRepository } from '../../domain/repository/article.query.repository';
 

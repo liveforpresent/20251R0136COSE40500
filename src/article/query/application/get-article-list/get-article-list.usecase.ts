@@ -1,6 +1,6 @@
 import { Inject, Injectable } from '@nestjs/common';
 import { ARTICLE_QUERY_REPOSITORY, ArticleQueryRepository } from '../../domain/repository/article.query.repository';
-import { GetArticleListProjection } from '../../domain/projection/get-article-list.projection';
+import { GetArticleListProjection } from './get-article-list.projection';
 
 @Injectable()
 export class GetArticleListUseCase {
