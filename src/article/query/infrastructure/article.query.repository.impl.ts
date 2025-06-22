@@ -1,9 +1,9 @@
 import { InjectRepository } from '@mikro-orm/nestjs';
-import { GetArticleDetailProjection } from '../domain/projection/get-article-detail.projection';
+import { GetArticleDetailProjection } from '../application/get-article-detail/get-article-detail.projection';
 import { ArticleQueryRepository } from '../domain/repository/article.query.repository';
 import { ArticleEntity } from 'src/article/command/infrastructure/article.entity';
 import { EntityManager, EntityRepository } from '@mikro-orm/mysql';
-import { GetArticleListProjection } from '../domain/projection/get-article-list.projection';
+import { GetArticleListProjection } from '../application/get-article-list/get-article-list.projection';
 
 export class ArticleQueryRepositoryImpl implements ArticleQueryRepository {
   constructor(
